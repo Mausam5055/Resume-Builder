@@ -1,0 +1,21 @@
+{
+  "name": "ResuAI - Modern Resume Builder",
+  "short_name": "ResuAI",
+  "description": "Create professional resumes with AI-powered suggestions",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1E3A8A",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+} 

@@ -1,0 +1,18 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://resuai.com/sitemap.xml
+
+# Disallow specific paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# Allow important paths
+Allow: /templates/
+Allow: /features/
+Allow: /pricing/
+Allow: /about/
+Allow: /contact/
