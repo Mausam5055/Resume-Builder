@@ -32,7 +32,7 @@ const ResumePreview = () => {
         <div 
           className={cn(
             "transform transition-transform duration-300",
-            isMobile ? "scale-100" : "scale-[1.3]"
+            isMobile ? "scale-100" : "scale-100"
           )}
           style={{
             transformOrigin: 'top center',
