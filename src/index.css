@@ -14,199 +14,199 @@
   }
 
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --background: hsl(0 0% 100%);
+    --foreground: hsl(222.2 84% 4.9%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(222.2 84% 4.9%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(222.2 84% 4.9%);
+    --primary: hsl(222.2 47.4% 11.2%);
+    --primary-foreground: hsl(210 40% 98%);
+    --secondary: hsl(210 40% 96.1%);
+    --secondary-foreground: hsl(222.2 47.4% 11.2%);
+    --muted: hsl(210 40% 96.1%);
+    --muted-foreground: hsl(215.4 16.3% 46.9%);
+    --accent: hsl(210 40% 96.1%);
+    --accent-foreground: hsl(222.2 47.4% 11.2%);
+    --destructive: hsl(0 84.2% 60.2%);
+    --destructive-foreground: hsl(210 40% 98%);
+    --border: hsl(214.3 31.8% 91.4%);
+    --input: hsl(214.3 31.8% 91.4%);
+    --ring: hsl(222.2 84% 4.9%);
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: hsl(0 0% 100%);
+    --sidebar-foreground: hsl(240 5.3% 26.1%);
+    --sidebar-primary: hsl(240 5.9% 10%);
+    --sidebar-primary-foreground: hsl(0 0% 98%);
+    --sidebar-accent: hsl(240 4.8% 95.9%);
+    --sidebar-accent-foreground: hsl(240 5.9% 10%);
+    --sidebar-border: hsl(220 13% 91%);
+    --sidebar-ring: hsl(217.2 91.2% 59.8%);
     
     /* Resume Template Colors - Jamie (Default Blue) */
-    --jamie: 220 14% 96%;
-    --jamie-accent: 220 54% 20%;
-    --jamie-text: 220 14% 20%;
+    --jamie: hsl(220 14% 96%);
+    --jamie-accent: hsl(220 54% 20%);
+    --jamie-text: hsl(220 14% 20%);
     
     /* Jamie (Green) */
-    --jamie-green-accent: 140 50% 20%;
-    --jamie-green-bg: 140 14% 96%;
-    --jamie-green-text: 140 14% 20%;
+    --jamie-green-accent: hsl(140 50% 20%);
+    --jamie-green-bg: hsl(140 14% 96%);
+    --jamie-green-text: hsl(140 14% 20%);
     
     /* Jamie (Purple) */
-    --jamie-purple-accent: 270 50% 30%;
-    --jamie-purple-bg: 270 14% 96%;
-    --jamie-purple-text: 270 14% 20%;
+    --jamie-purple-accent: hsl(270 50% 30%);
+    --jamie-purple-bg: hsl(270 14% 96%);
+    --jamie-purple-text: hsl(270 14% 20%);
     
     /* Jamie (Red) */
-    --jamie-red-accent: 0 50% 30%;
-    --jamie-red-bg: 0 14% 96%;
-    --jamie-red-text: 0 14% 20%;
+    --jamie-red-accent: hsl(0 50% 30%);
+    --jamie-red-bg: hsl(0 14% 96%);
+    --jamie-red-text: hsl(0 14% 20%);
     
     /* Jamie (Orange) */
-    --jamie-orange-accent: 30 50% 30%;
-    --jamie-orange-bg: 30 14% 96%;
-    --jamie-orange-text: 30 14% 20%;
+    --jamie-orange-accent: hsl(30 50% 30%);
+    --jamie-orange-bg: hsl(30 14% 96%);
+    --jamie-orange-text: hsl(30 14% 20%);
     
     /* Resume Template Colors - Lauren (Default Pink) */
-    --lauren: 340 40% 95%;
-    --lauren-accent: 340 60% 65%;
-    --lauren-text: 340 20% 20%;
+    --lauren: hsl(340 40% 95%);
+    --lauren-accent: hsl(340 60% 65%);
+    --lauren-text: hsl(340 20% 20%);
     
     /* Lauren (Blue) */
-    --lauren-blue-accent: 210 60% 50%;
-    --lauren-blue-bg: 210 40% 95%;
-    --lauren-blue-text: 210 20% 20%;
+    --lauren-blue-accent: hsl(210 60% 50%);
+    --lauren-blue-bg: hsl(210 40% 95%);
+    --lauren-blue-text: hsl(210 20% 20%);
     
     /* Lauren (Green) */
-    --lauren-green-accent: 150 60% 40%;
-    --lauren-green-bg: 150 40% 95%;
-    --lauren-green-text: 150 20% 20%;
+    --lauren-green-accent: hsl(150 60% 40%);
+    --lauren-green-bg: hsl(150 40% 95%);
+    --lauren-green-text: hsl(150 20% 20%);
     
     /* Lauren (Purple) */
-    --lauren-purple-accent: 270 60% 55%;
-    --lauren-purple-bg: 270 40% 95%;
-    --lauren-purple-text: 270 20% 20%;
+    --lauren-purple-accent: hsl(270 60% 55%);
+    --lauren-purple-bg: hsl(270 40% 95%);
+    --lauren-purple-text: hsl(270 20% 20%);
     
     /* Lauren (Amber) */
-    --lauren-amber-accent: 45 90% 45%;
-    --lauren-amber-bg: 45 40% 95%;
-    --lauren-amber-text: 45 20% 25%;
+    --lauren-amber-accent: hsl(45 90% 45%);
+    --lauren-amber-bg: hsl(45 40% 95%);
+    --lauren-amber-text: hsl(45 20% 25%);
     
     /* Resume Template Colors - Juan (Default Blue) */
-    --juan: 200 14% 96%;
-    --juan-accent: 200 70% 40%;
-    --juan-text: 200 14% 20%;
-    --juan-header: 200 20% 10%;
+    --juan: hsl(200 14% 96%);
+    --juan-accent: hsl(200 70% 40%);
+    --juan-text: hsl(200 14% 20%);
+    --juan-header: hsl(200 20% 10%);
     
     /* Juan (Emerald) */
-    --juan-emerald-accent: 150 70% 30%;
-    --juan-emerald-bg: 150 14% 96%;
-    --juan-emerald-text: 150 14% 20%;
-    --juan-emerald-header: 150 20% 10%;
+    --juan-emerald-accent: hsl(150 70% 30%);
+    --juan-emerald-bg: hsl(150 14% 96%);
+    --juan-emerald-text: hsl(150 14% 20%);
+    --juan-emerald-header: hsl(150 20% 10%);
     
     /* Juan (Violet) */
-    --juan-violet-accent: 270 70% 40%;
-    --juan-violet-bg: 270 14% 96%;
-    --juan-violet-text: 270 14% 20%;
-    --juan-violet-header: 270 20% 10%;
+    --juan-violet-accent: hsl(270 70% 40%);
+    --juan-violet-bg: hsl(270 14% 96%);
+    --juan-violet-text: hsl(270 14% 20%);
+    --juan-violet-header: hsl(270 20% 10%);
     
     /* Juan (Rose) */
-    --juan-rose-accent: 350 70% 40%;
-    --juan-rose-bg: 350 14% 96%;
-    --juan-rose-text: 350 14% 20%;
-    --juan-rose-header: 350 20% 10%;
+    --juan-rose-accent: hsl(350 70% 40%);
+    --juan-rose-bg: hsl(350 14% 96%);
+    --juan-rose-text: hsl(350 14% 20%);
+    --juan-rose-header: hsl(350 20% 10%);
     
     /* Juan (Slate) */
-    --juan-slate-accent: 210 30% 40%;
-    --juan-slate-bg: 210 14% 96%;
-    --juan-slate-text: 210 14% 20%;
-    --juan-slate-header: 210 20% 10%;
+    --juan-slate-accent: hsl(210 30% 40%);
+    --juan-slate-bg: hsl(210 14% 96%);
+    --juan-slate-text: hsl(210 14% 20%);
+    --juan-slate-header: hsl(210 20% 10%);
     
     /* Resume Template Colors - Richard (Default Navy) */
-    --richard: 230 40% 25%;
-    --richard-accent: 230 40% 40%;
-    --richard-text: 0 0% 100%;
+    --richard: hsl(230 40% 25%);
+    --richard-accent: hsl(230 40% 40%);
+    --richard-text: hsl(0 0% 100%);
     
     /* Richard (Charcoal) */
-    --richard-charcoal: 220 14% 20%;
-    --richard-charcoal-accent: 220 14% 30%;
-    --richard-charcoal-text: 0 0% 100%;
+    --richard-charcoal: hsl(220 14% 20%);
+    --richard-charcoal-accent: hsl(220 14% 30%);
+    --richard-charcoal-text: hsl(0 0% 100%);
     
     /* Richard (Maroon) */
-    --richard-maroon: 0 50% 25%;
-    --richard-maroon-accent: 0 50% 35%;
-    --richard-maroon-text: 0 0% 100%;
+    --richard-maroon: hsl(0 50% 25%);
+    --richard-maroon-accent: hsl(0 50% 35%);
+    --richard-maroon-text: hsl(0 0% 100%);
     
     /* Richard (Forest) */
-    --richard-forest: 150 40% 20%;
-    --richard-forest-accent: 150 40% 30%;
-    --richard-forest-text: 0 0% 100%;
+    --richard-forest: hsl(150 40% 20%);
+    --richard-forest-accent: hsl(150 40% 30%);
+    --richard-forest-text: hsl(0 0% 100%);
     
     /* Richard (Indigo) */
-    --richard-indigo: 270 40% 30%;
-    --richard-indigo-accent: 270 40% 40%;
-    --richard-indigo-text: 0 0% 100%;
+    --richard-indigo: hsl(270 40% 30%);
+    --richard-indigo-accent: hsl(270 40% 40%);
+    --richard-indigo-text: hsl(0 0% 100%);
   }
 
   .amoled {
-    --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
-    --card: 0 0% 0%;
-    --card-foreground: 210 40% 98%;
-    --popover: 0 0% 0%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 143 100% 50%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --sidebar-background: 0 0% 0%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 143 100% 50%;
-    --sidebar-primary-foreground: 0 0% 0%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 143 100% 50%;
+    --background: hsl(0 0% 0%);
+    --foreground: hsl(210 40% 98%);
+    --card: hsl(0 0% 0%);
+    --card-foreground: hsl(210 40% 98%);
+    --popover: hsl(0 0% 0%);
+    --popover-foreground: hsl(210 40% 98%);
+    --primary: hsl(143 100% 50%);
+    --primary-foreground: hsl(0 0% 0%);
+    --secondary: hsl(240 3.7% 15.9%);
+    --secondary-foreground: hsl(210 40% 98%);
+    --muted: hsl(240 3.7% 15.9%);
+    --muted-foreground: hsl(240 5% 64.9%);
+    --accent: hsl(240 3.7% 15.9%);
+    --accent-foreground: hsl(210 40% 98%);
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(210 40% 98%);
+    --border: hsl(240 3.7% 15.9%);
+    --input: hsl(240 3.7% 15.9%);
+    --ring: hsl(240 4.9% 83.9%);
+    --sidebar-background: hsl(0 0% 0%);
+    --sidebar-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-primary: hsl(143 100% 50%);
+    --sidebar-primary-foreground: hsl(0 0% 0%);
+    --sidebar-accent: hsl(240 3.7% 15.9%);
+    --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-border: hsl(240 3.7% 15.9%);
+    --sidebar-ring: hsl(143 100% 50%);
   }
 
   .neon {
-    --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
-    --card: 0 0% 0%;
-    --card-foreground: 210 40% 98%;
-    --popover: 0 0% 0%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 300 100% 50%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 300 100% 50%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 300 100% 50%;
-    --input: 240 3.7% 15.9%;
-    --ring: 300 100% 50%;
-    --sidebar-background: 0 0% 0%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 300 100% 50%;
-    --sidebar-primary-foreground: 0 0% 0%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 300 100% 50%;
-    --sidebar-ring: 300 100% 50%;
+    --background: hsl(0 0% 0%);
+    --foreground: hsl(210 40% 98%);
+    --card: hsl(0 0% 0%);
+    --card-foreground: hsl(210 40% 98%);
+    --popover: hsl(0 0% 0%);
+    --popover-foreground: hsl(210 40% 98%);
+    --primary: hsl(300 100% 50%);
+    --primary-foreground: hsl(0 0% 0%);
+    --secondary: hsl(240 3.7% 15.9%);
+    --secondary-foreground: hsl(210 40% 98%);
+    --muted: hsl(240 3.7% 15.9%);
+    --muted-foreground: hsl(240 5% 64.9%);
+    --accent: hsl(300 100% 50%);
+    --accent-foreground: hsl(0 0% 0%);
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(210 40% 98%);
+    --border: hsl(300 100% 50%);
+    --input: hsl(240 3.7% 15.9%);
+    --ring: hsl(300 100% 50%);
+    --sidebar-background: hsl(0 0% 0%);
+    --sidebar-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-primary: hsl(300 100% 50%);
+    --sidebar-primary-foreground: hsl(0 0% 0%);
+    --sidebar-accent: hsl(240 3.7% 15.9%);
+    --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-border: hsl(300 100% 50%);
+    --sidebar-ring: hsl(300 100% 50%);
   }
 }
 
