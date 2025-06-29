@@ -16,6 +16,7 @@ import {
   Share2
 } from 'lucide-react';
 import { useResume } from '@/context/ResumeContext';
+import { ThemeMode } from '@/types';
 import html2pdf from 'html2pdf.js';
 import { toast } from 'sonner';
 import { useMediaQuery } from '@/hooks/use-media-query';
@@ -32,6 +33,7 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
 
   const handleSave = () => {
     try {
+      // Save to localStorage
       localStorage.setItem('resumeData', JSON.stringify(resumeData));
       toast.success('Resume saved successfully');
     } catch (error) {
@@ -48,43 +50,34 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
         return;
       }
 
+      // Show loading toast
       const loadingToast = toast.loading('Generating PDF...');
 
-      // Get the actual content dimensions
-      const elementRect = element.getBoundingClientRect();
+      // Calculate dynamic page size based on content
       const elementHeight = element.scrollHeight;
       const elementWidth = element.scrollWidth;
       
-      // Calculate optimal PDF dimensions based on content
-      const contentAspectRatio = elementWidth / elementHeight;
-      const a4AspectRatio = 210 / 297; // A4 aspect ratio
+      // A4 dimensions in mm
+      const a4Width = 210;
+      const a4Height = 297;
       
-      let pdfWidth = 210; // A4 width in mm
-      let pdfHeight = 297; // A4 height in mm
-      
-      // Adjust dimensions based on content to fit everything on one page
-      if (elementHeight > elementWidth * (297/210)) {
-        // Content is taller than A4 ratio, make it fit by adjusting scale
-        const scale = Math.min(1, (297 * elementWidth) / (210 * elementHeight));
-        pdfHeight = Math.max(297, elementHeight * (210 / elementWidth));
-      }
+      // Calculate required height based on content
+      const aspectRatio = elementWidth / elementHeight;
+      let pdfWidth = a4Width;
+      let pdfHeight = Math.max(a4Height, pdfWidth / aspectRatio);
 
       const opt = {
-        margin: [2, 2, 2, 2], // Minimal margins
+        margin: [5, 5, 5, 5],
         filename: `${resumeData.personal.fullName.replace(/\s+/g, '_')}_Resume.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
-          scale: 1.5, // Reduced scale for better fitting
+          scale: 2, 
           useCORS: true, 
           logging: false,
           allowTaint: true,
           backgroundColor: '#ffffff',
           width: elementWidth,
-          height: elementHeight,
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: elementWidth,
-          windowHeight: elementHeight
+          height: elementHeight
         },
         jsPDF: { 
           unit: 'mm', 
@@ -96,6 +89,7 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
 
       await html2pdf().set(opt).from(element).save();
       
+      // Dismiss loading toast and show success
       toast.dismiss(loadingToast);
       toast.success('Resume exported as PDF successfully');
     } catch (error) {
@@ -112,14 +106,17 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
         return;
       }
 
+      // Create a new window for printing
       const printWindow = window.open('', '_blank');
       if (!printWindow) {
         toast.error('Please allow popups to print');
         return;
       }
 
+      // Get the HTML content
       const htmlContent = element.outerHTML;
       
+      // Create print-friendly HTML
       printWindow.document.write(`
         <!DOCTYPE html>
         <html>
@@ -128,19 +125,12 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
             <style>
               * { margin: 0; padding: 0; box-sizing: border-box; }
               body { font-family: Arial, sans-serif; }
-              @page { 
-                size: A4; 
-                margin: 5mm; 
-              }
               @media print {
                 body { margin: 0; }
                 .resume-preview-container > div {
                   width: 100% !important;
                   height: auto !important;
                   box-shadow: none !important;
-                  page-break-inside: avoid;
-                  transform: scale(0.95);
-                  transform-origin: top left;
                 }
               }
             </style>
@@ -154,6 +144,7 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
       printWindow.document.close();
       printWindow.focus();
       
+      // Wait for content to load then print
       setTimeout(() => {
         printWindow.print();
         printWindow.close();
@@ -176,6 +167,7 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
         });
         toast.success('Shared successfully');
       } else {
+        // Fallback: copy to clipboard
         await navigator.clipboard.writeText(window.location.href);
         toast.success('Link copied to clipboard');
       }
@@ -193,8 +185,7 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
   };
 
   const toggleTheme = () => {
-    const nextTheme = theme === 'light' ? 'amoled' : 'light';
-    setTheme(nextTheme);
+    setTheme(theme === 'light' ? 'amoled' : 'light');
   };
 
   const ThemeIcon = () => {

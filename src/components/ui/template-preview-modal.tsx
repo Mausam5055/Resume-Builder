@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 
@@ -14,10 +14,6 @@ const TemplatePreviewModal = ({ isOpen, onClose, imageUrl, templateName }: Templ
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl p-0 bg-background/95 backdrop-blur-sm border border-border/40 h-[90vh] overflow-hidden">
-        <DialogTitle className="sr-only">
-          {templateName} Template Preview
-        </DialogTitle>
-        
         <div className="relative h-full">
           <Button
             variant="ghost"
@@ -44,4 +40,4 @@ const TemplatePreviewModal = ({ isOpen, onClose, imageUrl, templateName }: Templ
   );
 };
 
-export default TemplatePreviewModal;
+export default TemplatePreviewModal; 

@@ -44,7 +44,7 @@ const ResumePreview = () => {
           }}
         >
           <div className={cn(
-            "w-full resume-preview-container",
+            "w-full",
             isMobile ? "shadow-lg rounded-lg overflow-hidden" : "max-w-[210mm]"
           )}>
             {renderTemplate()}
