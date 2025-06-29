@@ -16,7 +16,6 @@ import {
   Share2
 } from 'lucide-react';
 import { useResume } from '@/context/ResumeContext';
-import { ThemeMode } from '@/types';
 import html2pdf from 'html2pdf.js';
 import { toast } from 'sonner';
 import { useMediaQuery } from '@/hooks/use-media-query';
@@ -63,25 +62,19 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
       let pdfWidth = 210; // A4 width in mm
       let pdfHeight = 297; // A4 height in mm
       
-      // Adjust dimensions based on content
-      if (contentAspectRatio > a4AspectRatio) {
-        // Content is wider, adjust height
-        pdfHeight = pdfWidth / contentAspectRatio;
-      } else {
-        // Content is taller, adjust width
-        pdfWidth = pdfHeight * contentAspectRatio;
+      // Adjust dimensions based on content to fit everything on one page
+      if (elementHeight > elementWidth * (297/210)) {
+        // Content is taller than A4 ratio, make it fit by adjusting scale
+        const scale = Math.min(1, (297 * elementWidth) / (210 * elementHeight));
+        pdfHeight = Math.max(297, elementHeight * (210 / elementWidth));
       }
-      
-      // Ensure minimum A4 size
-      pdfWidth = Math.max(pdfWidth, 210);
-      pdfHeight = Math.max(pdfHeight, 297);
 
       const opt = {
-        margin: [5, 5, 5, 5], // Small margins
+        margin: [2, 2, 2, 2], // Minimal margins
         filename: `${resumeData.personal.fullName.replace(/\s+/g, '_')}_Resume.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
-          scale: 2,
+          scale: 1.5, // Reduced scale for better fitting
           useCORS: true, 
           logging: false,
           allowTaint: true,
@@ -96,7 +89,7 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
         jsPDF: { 
           unit: 'mm', 
           format: [pdfWidth, pdfHeight], 
-          orientation: pdfHeight > pdfWidth ? 'portrait' : 'landscape',
+          orientation: 'portrait',
           compress: true
         }
       };
@@ -137,7 +130,7 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
               body { font-family: Arial, sans-serif; }
               @page { 
                 size: A4; 
-                margin: 10mm; 
+                margin: 5mm; 
               }
               @media print {
                 body { margin: 0; }
@@ -146,6 +139,8 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
                   height: auto !important;
                   box-shadow: none !important;
                   page-break-inside: avoid;
+                  transform: scale(0.95);
+                  transform-origin: top left;
                 }
               }
             </style>
@@ -198,7 +193,8 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
   };
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'amoled' : 'light');
+    const nextTheme = theme === 'light' ? 'amoled' : 'light';
+    setTheme(nextTheme);
   };
 
   const ThemeIcon = () => {

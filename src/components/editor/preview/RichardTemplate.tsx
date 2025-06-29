@@ -34,23 +34,25 @@ const RichardTemplate = () => {
         transition={{ duration: 0.5 }}
         style={{
           width: isMobile ? '100%' : '210mm',
-          minHeight: isMobile ? 'auto' : '297mm'
+          minHeight: isMobile ? 'auto' : 'auto',
+          fontSize: '14px',
+          lineHeight: '1.4'
         }}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <header className="bg-[hsl(var(--richard))] text-[hsl(var(--richard-text))] py-8 lg:py-12 px-6 lg:px-10 flex flex-col items-center">
-            <h1 className="text-3xl lg:text-5xl font-bold tracking-wider text-center">{personal.fullName}</h1>
-            <h2 className="text-lg lg:text-xl mt-2 font-light tracking-wide">{personal.jobTitle}</h2>
+          <header className="bg-[hsl(var(--richard))] text-[hsl(var(--richard-text))] py-4 lg:py-6 px-4 lg:px-6 flex flex-col items-center">
+            <h1 className="text-2xl lg:text-3xl font-bold tracking-wider text-center">{personal.fullName}</h1>
+            <h2 className="text-base lg:text-lg mt-1 font-light tracking-wide">{personal.jobTitle}</h2>
           </header>
           
           <div className="flex flex-col lg:flex-row flex-1">
             {/* Left Column */}
-            <div className="w-full lg:w-1/3 bg-gray-200 p-6 lg:p-8">
+            <div className="w-full lg:w-1/3 bg-gray-200 p-4 lg:p-6">
               {/* Avatar */}
-              <div className="flex justify-center mb-6 lg:mb-8">
+              <div className="flex justify-center mb-4 lg:mb-6">
                 {personal.avatarUrl ? (
-                  <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden border-4 border-white">
+                  <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full overflow-hidden border-4 border-white">
                     <img 
                       src={personal.avatarUrl} 
                       alt={personal.fullName} 
@@ -58,8 +60,8 @@ const RichardTemplate = () => {
                     />
                   </div>
                 ) : (
-                  <Avatar className="w-32 h-32 lg:w-40 lg:h-40 rounded-full border-4 border-white">
-                    <AvatarFallback className="text-2xl lg:text-3xl bg-[hsl(var(--richard))] text-[hsl(var(--richard-text))]">
+                  <Avatar className="w-24 h-24 lg:w-32 lg:h-32 rounded-full border-4 border-white">
+                    <AvatarFallback className="text-xl lg:text-2xl bg-[hsl(var(--richard))] text-[hsl(var(--richard-text))]">
                       {personal.fullName.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
@@ -67,33 +69,33 @@ const RichardTemplate = () => {
               </div>
               
               {/* Contact section */}
-              <section className="mb-6 lg:mb-8">
-                <h2 className="text-lg lg:text-2xl font-bold border-b-2 border-gray-400 pb-2 mb-4 lg:mb-6 uppercase">Contact</h2>
-                <div className="space-y-3 lg:space-y-4">
+              <section className="mb-4 lg:mb-6">
+                <h2 className="text-base lg:text-lg font-bold border-b-2 border-gray-400 pb-1 mb-3 lg:mb-4 uppercase">Contact</h2>
+                <div className="space-y-2 lg:space-y-3">
                   {personal.phone && (
                     <div className="flex items-center gap-2 lg:gap-3">
-                      <Phone className="h-4 w-4 lg:h-5 lg:w-5 text-[hsl(var(--richard))]" />
+                      <Phone className="h-3 w-3 lg:h-4 lg:w-4 text-[hsl(var(--richard))]" />
                       <span className="text-sm lg:text-base">{personal.phone}</span>
                     </div>
                   )}
                   
                   {personal.email && (
                     <div className="flex items-center gap-2 lg:gap-3">
-                      <Mail className="h-4 w-4 lg:h-5 lg:w-5 text-[hsl(var(--richard))]" />
+                      <Mail className="h-3 w-3 lg:h-4 lg:w-4 text-[hsl(var(--richard))]" />
                       <span className="text-sm lg:text-base break-all">{personal.email}</span>
                     </div>
                   )}
                   
                   {personal.location && (
                     <div className="flex items-center gap-2 lg:gap-3">
-                      <MapPin className="h-4 w-4 lg:h-5 lg:w-5 text-[hsl(var(--richard))]" />
+                      <MapPin className="h-3 w-3 lg:h-4 lg:w-4 text-[hsl(var(--richard))]" />
                       <span className="text-sm lg:text-base">{personal.location}</span>
                     </div>
                   )}
                   
                   {personal.website && (
                     <div className="flex items-center gap-2 lg:gap-3">
-                      <Globe className="h-4 w-4 lg:h-5 lg:w-5 text-[hsl(var(--richard))]" />
+                      <Globe className="h-3 w-3 lg:h-4 lg:w-4 text-[hsl(var(--richard))]" />
                       <span className="text-sm lg:text-base break-all">{personal.website}</span>
                     </div>
                   )}
@@ -102,9 +104,9 @@ const RichardTemplate = () => {
               
               {/* Skills */}
               {skills.length > 0 && (
-                <section className="mb-6 lg:mb-8">
-                  <h2 className="text-lg lg:text-2xl font-bold border-b-2 border-gray-400 pb-2 mb-4 lg:mb-6 uppercase">Skills</h2>
-                  <ul className="space-y-2">
+                <section className="mb-4 lg:mb-6">
+                  <h2 className="text-base lg:text-lg font-bold border-b-2 border-gray-400 pb-1 mb-3 lg:mb-4 uppercase">Skills</h2>
+                  <ul className="space-y-1">
                     {skills.flatMap(group => 
                       group.skills.map(skill => (
                         <li key={skill.id} className="flex items-center text-sm lg:text-base">
@@ -119,9 +121,9 @@ const RichardTemplate = () => {
               
               {/* Languages */}
               {languages.length > 0 && (
-                <section className="mb-6 lg:mb-8">
-                  <h2 className="text-lg lg:text-2xl font-bold border-b-2 border-gray-400 pb-2 mb-4 lg:mb-6 uppercase">Languages</h2>
-                  <ul className="space-y-2">
+                <section className="mb-4 lg:mb-6">
+                  <h2 className="text-base lg:text-lg font-bold border-b-2 border-gray-400 pb-1 mb-3 lg:mb-4 uppercase">Languages</h2>
+                  <ul className="space-y-1">
                     {languages.map(language => (
                       <li key={language.id} className="text-sm lg:text-base">
                         <span className="font-medium">{language.name}</span>
@@ -135,8 +137,8 @@ const RichardTemplate = () => {
               {/* References */}
               {references.length > 0 && (
                 <section>
-                  <h2 className="text-lg lg:text-2xl font-bold border-b-2 border-gray-400 pb-2 mb-4 lg:mb-6 uppercase">Reference</h2>
-                  <div className="space-y-4">
+                  <h2 className="text-base lg:text-lg font-bold border-b-2 border-gray-400 pb-1 mb-3 lg:mb-4 uppercase">Reference</h2>
+                  <div className="space-y-3">
                     {references.map(reference => (
                       <div key={reference.id}>
                         <p className="font-bold text-sm lg:text-base">{reference.name}</p>
@@ -151,15 +153,15 @@ const RichardTemplate = () => {
             </div>
             
             {/* Right Column */}
-            <div className="w-full lg:w-2/3 p-6 lg:p-8">
+            <div className="w-full lg:w-2/3 p-4 lg:p-6">
               {/* Profile */}
               {summary && summary.text && (
-                <section className="mb-6 lg:mb-8">
-                  <div className="flex items-center mb-3 lg:mb-4">
-                    <User className="h-5 w-5 lg:h-6 lg:w-6 text-[hsl(var(--richard))] mr-3" />
-                    <h2 className="text-lg lg:text-2xl font-bold uppercase">Profile</h2>
+                <section className="mb-4 lg:mb-6">
+                  <div className="flex items-center mb-2 lg:mb-3">
+                    <User className="h-4 w-4 lg:h-5 lg:w-5 text-[hsl(var(--richard))] mr-3" />
+                    <h2 className="text-base lg:text-lg font-bold uppercase">Profile</h2>
                   </div>
-                  <div className="border-l-4 border-[hsl(var(--richard))] pl-4 lg:pl-6 ml-3">
+                  <div className="border-l-4 border-[hsl(var(--richard))] pl-3 lg:pl-4 ml-2">
                     <p className="text-sm lg:text-base">{summary.text}</p>
                   </div>
                 </section>
@@ -167,31 +169,31 @@ const RichardTemplate = () => {
               
               {/* Work Experience */}
               {experience.length > 0 && (
-                <section className="mb-6 lg:mb-8">
-                  <div className="flex items-center mb-3 lg:mb-4">
-                    <Briefcase className="h-5 w-5 lg:h-6 lg:w-6 text-[hsl(var(--richard))] mr-3" />
-                    <h2 className="text-lg lg:text-2xl font-bold uppercase">Work Experience</h2>
+                <section className="mb-4 lg:mb-6">
+                  <div className="flex items-center mb-2 lg:mb-3">
+                    <Briefcase className="h-4 w-4 lg:h-5 lg:w-5 text-[hsl(var(--richard))] mr-3" />
+                    <h2 className="text-base lg:text-lg font-bold uppercase">Work Experience</h2>
                   </div>
                   
-                  <div className="border-l-4 border-[hsl(var(--richard))] pl-4 lg:pl-6 ml-3">
-                    <div className="space-y-6 lg:space-y-8">
+                  <div className="border-l-4 border-[hsl(var(--richard))] pl-3 lg:pl-4 ml-2">
+                    <div className="space-y-4 lg:space-y-5">
                       {experience.map((exp, index) => (
                         <div key={exp.id} className="relative">
                           {index !== experience.length - 1 && (
-                            <div className="absolute h-full w-px bg-gray-300 left-[-25px] top-6"></div>
+                            <div className="absolute h-full w-px bg-gray-300 left-[-19px] top-4"></div>
                           )}
-                          <div className="absolute w-3 h-3 rounded-full bg-[hsl(var(--richard))] left-[-27px] top-2"></div>
+                          <div className="absolute w-2.5 h-2.5 rounded-full bg-[hsl(var(--richard))] left-[-21px] top-1"></div>
                           
                           <div>
-                            <div className="flex flex-col lg:flex-row lg:justify-between gap-1 lg:gap-0">
-                              <h3 className="font-bold text-base lg:text-lg">{exp.company}</h3>
+                            <div className="flex flex-col lg:flex-row lg:justify-between gap-0.5 lg:gap-0">
+                              <h3 className="font-bold text-sm lg:text-base">{exp.company}</h3>
                               <span className="text-sm lg:text-base text-gray-600">
                                 {formatDateRange(exp.startDate, exp.endDate, exp.isCurrentPosition)}
                               </span>
                             </div>
-                            <p className="text-gray-700 italic mb-2 text-sm lg:text-base">{exp.position}</p>
+                            <p className="text-gray-700 italic mb-1 text-sm lg:text-base">{exp.position}</p>
                             
-                            <ul className="list-disc list-inside space-y-1">
+                            <ul className="list-disc list-inside space-y-0.5">
                               {exp.bullets.map((bullet, i) => bullet && (
                                 <li key={i} className="text-sm lg:text-base">{bullet}</li>
                               ))}
@@ -206,29 +208,29 @@ const RichardTemplate = () => {
               
               {/* Education */}
               {education.length > 0 && (
-                <section className="mb-6 lg:mb-8">
-                  <div className="flex items-center mb-3 lg:mb-4">
-                    <GraduationCap className="h-5 w-5 lg:h-6 lg:w-6 text-[hsl(var(--richard))] mr-3" />
-                    <h2 className="text-lg lg:text-2xl font-bold uppercase">Education</h2>
+                <section className="mb-4 lg:mb-6">
+                  <div className="flex items-center mb-2 lg:mb-3">
+                    <GraduationCap className="h-4 w-4 lg:h-5 lg:w-5 text-[hsl(var(--richard))] mr-3" />
+                    <h2 className="text-base lg:text-lg font-bold uppercase">Education</h2>
                   </div>
                   
-                  <div className="border-l-4 border-[hsl(var(--richard))] pl-4 lg:pl-6 ml-3">
-                    <div className="space-y-6 lg:space-y-8">
+                  <div className="border-l-4 border-[hsl(var(--richard))] pl-3 lg:pl-4 ml-2">
+                    <div className="space-y-4 lg:space-y-5">
                       {education.map((edu, index) => (
                         <div key={edu.id} className="relative">
                           {index !== education.length - 1 && (
-                            <div className="absolute h-full w-px bg-gray-300 left-[-25px] top-6"></div>
+                            <div className="absolute h-full w-px bg-gray-300 left-[-19px] top-4"></div>
                           )}
-                          <div className="absolute w-3 h-3 rounded-full bg-[hsl(var(--richard))] left-[-27px] top-2"></div>
+                          <div className="absolute w-2.5 h-2.5 rounded-full bg-[hsl(var(--richard))] left-[-21px] top-1"></div>
                           
                           <div>
-                            <div className="flex flex-col lg:flex-row lg:justify-between gap-1 lg:gap-0">
-                              <h3 className="font-bold text-base lg:text-lg">{edu.degree} of {edu.field}</h3>
+                            <div className="flex flex-col lg:flex-row lg:justify-between gap-0.5 lg:gap-0">
+                              <h3 className="font-bold text-sm lg:text-base">{edu.degree} of {edu.field}</h3>
                               <span className="text-sm lg:text-base text-gray-600">
                                 {formatDateRange(edu.startDate, edu.endDate)}
                               </span>
                             </div>
-                            <p className="text-gray-700 mb-1 text-sm lg:text-base">
+                            <p className="text-gray-700 mb-0.5 text-sm lg:text-base">
                               {edu.institution}
                             </p>
                             {edu.gpa && (
@@ -244,31 +246,31 @@ const RichardTemplate = () => {
               
               {/* Projects */}
               {projects.length > 0 && (
-                <section className="mb-6 lg:mb-8">
-                  <div className="flex items-center mb-3 lg:mb-4">
-                    <Briefcase className="h-5 w-5 lg:h-6 lg:w-6 text-[hsl(var(--richard))] mr-3" />
-                    <h2 className="text-lg lg:text-2xl font-bold uppercase">Projects</h2>
+                <section className="mb-4 lg:mb-6">
+                  <div className="flex items-center mb-2 lg:mb-3">
+                    <Briefcase className="h-4 w-4 lg:h-5 lg:w-5 text-[hsl(var(--richard))] mr-3" />
+                    <h2 className="text-base lg:text-lg font-bold uppercase">Projects</h2>
                   </div>
                   
-                  <div className="border-l-4 border-[hsl(var(--richard))] pl-4 lg:pl-6 ml-3">
-                    <div className="space-y-4 lg:space-y-6">
+                  <div className="border-l-4 border-[hsl(var(--richard))] pl-3 lg:pl-4 ml-2">
+                    <div className="space-y-3 lg:space-y-4">
                       {projects.map((project, index) => (
                         <div key={project.id} className="relative">
                           {index !== projects.length - 1 && (
-                            <div className="absolute h-full w-px bg-gray-300 left-[-25px] top-6"></div>
+                            <div className="absolute h-full w-px bg-gray-300 left-[-19px] top-4"></div>
                           )}
-                          <div className="absolute w-3 h-3 rounded-full bg-[hsl(var(--richard))] left-[-27px] top-2"></div>
+                          <div className="absolute w-2.5 h-2.5 rounded-full bg-[hsl(var(--richard))] left-[-21px] top-1"></div>
                           
                           <div>
-                            <h3 className="font-bold text-base lg:text-lg">{project.name}</h3>
-                            <p className="text-gray-700 mb-2 text-sm lg:text-base">{project.description}</p>
+                            <h3 className="font-bold text-sm lg:text-base">{project.name}</h3>
+                            <p className="text-gray-700 mb-1 text-sm lg:text-base">{project.description}</p>
                             
                             {project.technologies && project.technologies.length > 0 && (
-                              <div className="flex flex-wrap gap-1 mt-2">
+                              <div className="flex flex-wrap gap-1 mt-1">
                                 {project.technologies.map((tech, idx) => tech && (
                                   <span 
                                     key={idx} 
-                                    className="text-xs bg-gray-200 px-2 py-1 rounded"
+                                    className="text-xs bg-gray-200 px-2 py-0.5 rounded"
                                   >
                                     {tech}
                                   </span>
@@ -286,22 +288,22 @@ const RichardTemplate = () => {
               {/* Certificates */}
               {certificates.length > 0 && (
                 <section>
-                  <div className="flex items-center mb-3 lg:mb-4">
-                    <GraduationCap className="h-5 w-5 lg:h-6 lg:w-6 text-[hsl(var(--richard))] mr-3" />
-                    <h2 className="text-lg lg:text-2xl font-bold uppercase">Certificates</h2>
+                  <div className="flex items-center mb-2 lg:mb-3">
+                    <GraduationCap className="h-4 w-4 lg:h-5 lg:w-5 text-[hsl(var(--richard))] mr-3" />
+                    <h2 className="text-base lg:text-lg font-bold uppercase">Certificates</h2>
                   </div>
                   
-                  <div className="border-l-4 border-[hsl(var(--richard))] pl-4 lg:pl-6 ml-3">
-                    <div className="space-y-4 lg:space-y-6">
+                  <div className="border-l-4 border-[hsl(var(--richard))] pl-3 lg:pl-4 ml-2">
+                    <div className="space-y-3 lg:space-y-4">
                       {certificates.map((cert, index) => (
                         <div key={cert.id} className="relative">
                           {index !== certificates.length - 1 && (
-                            <div className="absolute h-full w-px bg-gray-300 left-[-25px] top-6"></div>
+                            <div className="absolute h-full w-px bg-gray-300 left-[-19px] top-4"></div>
                           )}
-                          <div className="absolute w-3 h-3 rounded-full bg-[hsl(var(--richard))] left-[-27px] top-2"></div>
+                          <div className="absolute w-2.5 h-2.5 rounded-full bg-[hsl(var(--richard))] left-[-21px] top-1"></div>
                           
                           <div>
-                            <h3 className="font-bold text-base lg:text-lg">{cert.name}</h3>
+                            <h3 className="font-bold text-sm lg:text-base">{cert.name}</h3>
                             <p className="text-gray-700 text-sm lg:text-base">{cert.issuer}</p>
                             <p className="text-sm text-gray-600">
                               {formatDateRange(cert.issueDate, cert.expiryDate || '')}

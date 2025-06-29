@@ -33,16 +33,18 @@ const LaurenTemplate = () => {
         transition={{ duration: 0.5 }}
         style={{
           width: isMobile ? '100%' : '210mm',
-          minHeight: isMobile ? 'auto' : '297mm'
+          minHeight: isMobile ? 'auto' : 'auto',
+          fontSize: '14px',
+          lineHeight: '1.4'
         }}
       >
         <div className="flex flex-col lg:flex-row h-full min-h-full">
           {/* Left column */}
-          <div className="w-full lg:w-2/5 bg-[hsl(var(--lauren-bg))] p-6 lg:p-10 flex flex-col">
+          <div className="w-full lg:w-2/5 bg-[hsl(var(--lauren-bg))] p-4 lg:p-6 flex flex-col">
             {/* Photo and name */}
-            <div className="flex flex-col items-center mb-6 lg:mb-8">
+            <div className="flex flex-col items-center mb-4 lg:mb-6">
               {personal.avatarUrl ? (
-                <div className="w-32 h-32 lg:w-44 lg:h-44 mb-4 overflow-hidden rounded-full border-4 border-[hsl(var(--lauren-accent))]">
+                <div className="w-24 h-24 lg:w-32 lg:h-32 mb-3 overflow-hidden rounded-full border-4 border-[hsl(var(--lauren-accent))]">
                   <img 
                     src={personal.avatarUrl} 
                     alt={personal.fullName} 
@@ -50,21 +52,21 @@ const LaurenTemplate = () => {
                   />
                 </div>
               ) : (
-                <Avatar className="w-32 h-32 lg:w-44 lg:h-44 mb-4 border-4 border-[hsl(var(--lauren-accent))]">
-                  <AvatarFallback className="text-2xl lg:text-4xl">
+                <Avatar className="w-24 h-24 lg:w-32 lg:h-32 mb-3 border-4 border-[hsl(var(--lauren-accent))]">
+                  <AvatarFallback className="text-xl lg:text-2xl">
                     {personal.fullName.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
               )}
-              <h1 className="text-xl lg:text-2xl font-bold mt-2 text-[hsl(var(--lauren-text))] text-center break-words">{personal.fullName}</h1>
+              <h1 className="text-lg lg:text-xl font-bold mt-1 text-[hsl(var(--lauren-text))] text-center break-words">{personal.fullName}</h1>
               <p className="text-[hsl(var(--lauren-accent))] font-medium text-center break-words text-sm lg:text-base">{personal.jobTitle}</p>
             </div>
 
             {/* Contact section */}
-            <div className="mb-6 lg:mb-8">
-              <h2 className="text-base lg:text-lg font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-3 lg:mb-4 text-[hsl(var(--lauren-text))]">Contact</h2>
+            <div className="mb-4 lg:mb-6">
+              <h2 className="text-sm lg:text-base font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-2 lg:mb-3 text-[hsl(var(--lauren-text))]">Contact</h2>
               
-              <div className="space-y-2 text-xs lg:text-sm">
+              <div className="space-y-1.5 text-xs lg:text-sm">
                 {personal.location && (
                   <div>
                     <h3 className="font-semibold text-[hsl(var(--lauren-accent))]">Address</h3>
@@ -97,9 +99,9 @@ const LaurenTemplate = () => {
             
             {/* Skills section */}
             {enabledSections.find(s => s.id === 'skills') && skills.length > 0 && (
-              <div className="mb-6 lg:mb-8">
-                <h2 className="text-base lg:text-lg font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-3 lg:mb-4 text-[hsl(var(--lauren-text))]">Skills</h2>
-                <ul className="list-disc ml-5 space-y-1 text-xs lg:text-sm text-[hsl(var(--lauren-text))]">
+              <div className="mb-4 lg:mb-6">
+                <h2 className="text-sm lg:text-base font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-2 lg:mb-3 text-[hsl(var(--lauren-text))]">Skills</h2>
+                <ul className="list-disc ml-4 space-y-0.5 text-xs lg:text-sm text-[hsl(var(--lauren-text))]">
                   {skills.flatMap(group => 
                     group.skills.map(skill => (
                       <li key={skill.id}>{skill.name}</li>
@@ -111,8 +113,8 @@ const LaurenTemplate = () => {
             
             {/* Languages section */}
             {enabledSections.find(s => s.id === 'languages') && languages.length > 0 && (
-              <div className="mb-6 lg:mb-8">
-                <h2 className="text-base lg:text-lg font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-3 lg:mb-4 text-[hsl(var(--lauren-text))]">Languages</h2>
+              <div className="mb-4 lg:mb-6">
+                <h2 className="text-sm lg:text-base font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-2 lg:mb-3 text-[hsl(var(--lauren-text))]">Languages</h2>
                 <div className="space-y-1 text-xs lg:text-sm">
                   {languages.map(language => (
                     <div key={language.id}>
@@ -127,8 +129,8 @@ const LaurenTemplate = () => {
             {/* Certificates section */}
             {enabledSections.find(s => s.id === 'certificates') && certificates.length > 0 && (
               <div>
-                <h2 className="text-base lg:text-lg font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-3 lg:mb-4 text-[hsl(var(--lauren-text))]">Certificates</h2>
-                <div className="space-y-2">
+                <h2 className="text-sm lg:text-base font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-2 lg:mb-3 text-[hsl(var(--lauren-text))]">Certificates</h2>
+                <div className="space-y-1.5">
                   {certificates.map(cert => (
                     <div key={cert.id}>
                       <h3 className="font-medium text-xs lg:text-sm">{cert.name}</h3>
@@ -141,20 +143,20 @@ const LaurenTemplate = () => {
           </div>
           
           {/* Right column */}
-          <div className="w-full lg:w-3/5 p-6 lg:p-10">
+          <div className="w-full lg:w-3/5 p-4 lg:p-6">
             {/* Professional Summary */}
             {enabledSections.find(s => s.id === 'summary') && summary && summary.text && (
-              <div className="mb-6 lg:mb-8">
-                <h2 className="text-base lg:text-lg font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-3 text-[hsl(var(--lauren-accent))]">Professional Summary</h2>
+              <div className="mb-4 lg:mb-6">
+                <h2 className="text-sm lg:text-base font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-2 text-[hsl(var(--lauren-accent))]">Professional Summary</h2>
                 <p className="text-xs lg:text-sm">{summary.text}</p>
               </div>
             )}
             
             {/* Work Experience */}
             {enabledSections.find(s => s.id === 'experience') && experience.length > 0 && (
-              <div className="mb-6 lg:mb-8">
-                <h2 className="text-base lg:text-lg font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-3 text-[hsl(var(--lauren-accent))]">Work Experience</h2>
-                <div className="space-y-4 lg:space-y-5">
+              <div className="mb-4 lg:mb-6">
+                <h2 className="text-sm lg:text-base font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-2 text-[hsl(var(--lauren-accent))]">Work Experience</h2>
+                <div className="space-y-3 lg:space-y-4">
                   {experience.map((exp) => (
                     <div key={exp.id}>
                       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-baseline gap-1 lg:gap-0">
@@ -180,9 +182,9 @@ const LaurenTemplate = () => {
             
             {/* Education */}
             {enabledSections.find(s => s.id === 'education') && education.length > 0 && (
-              <div className="mb-6 lg:mb-8">
-                <h2 className="text-base lg:text-lg font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-3 text-[hsl(var(--lauren-accent))]">Education</h2>
-                <div className="space-y-3">
+              <div className="mb-4 lg:mb-6">
+                <h2 className="text-sm lg:text-base font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-2 text-[hsl(var(--lauren-accent))]">Education</h2>
+                <div className="space-y-2">
                   {education.map((edu) => (
                     <div key={edu.id}>
                       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-baseline gap-1 lg:gap-0">
@@ -203,20 +205,20 @@ const LaurenTemplate = () => {
             
             {/* Projects */}
             {enabledSections.find(s => s.id === 'projects') && projects.length > 0 && (
-              <div className="mb-6 lg:mb-8">
-                <h2 className="text-base lg:text-lg font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-3 text-[hsl(var(--lauren-accent))]">Projects</h2>
-                <div className="space-y-4">
+              <div className="mb-4 lg:mb-6">
+                <h2 className="text-sm lg:text-base font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-2 text-[hsl(var(--lauren-accent))]">Projects</h2>
+                <div className="space-y-3">
                   {projects.map(project => (
                     <div key={project.id}>
                       <h3 className="font-semibold text-sm lg:text-base">{project.name}</h3>
                       <p className="text-xs lg:text-sm">{project.description}</p>
                       
                       {project.technologies && project.technologies.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mt-2">
+                        <div className="flex flex-wrap gap-1 mt-1">
                           {project.technologies.map((tech, idx) => tech && (
                             <span 
                               key={idx} 
-                              className="text-xs bg-[hsl(var(--lauren-bg))] px-2 py-1 rounded"
+                              className="text-xs bg-[hsl(var(--lauren-bg))] px-2 py-0.5 rounded"
                             >
                               {tech}
                             </span>
@@ -232,8 +234,8 @@ const LaurenTemplate = () => {
             {/* References */}
             {enabledSections.find(s => s.id === 'references') && references.length > 0 && (
               <div>
-                <h2 className="text-base lg:text-lg font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-3 text-[hsl(var(--lauren-accent))]">References</h2>
-                <div className="space-y-3">
+                <h2 className="text-sm lg:text-base font-bold border-b border-[hsl(var(--lauren-accent))/30] pb-1 mb-2 text-[hsl(var(--lauren-accent))]">References</h2>
+                <div className="space-y-2">
                   {references.map(reference => (
                     <div key={reference.id}>
                       <h3 className="font-semibold text-sm lg:text-base">{reference.name}</h3>

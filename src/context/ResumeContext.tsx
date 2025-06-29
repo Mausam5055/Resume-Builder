@@ -137,9 +137,9 @@ export const ResumeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return saved ? JSON.parse(saved) : DEFAULT_RESUME_DATA;
   });
 
-  const [theme, setTheme] = useState<ThemeMode>(() => {
+  const [theme, setThemeState] = useState<ThemeMode>(() => {
     const savedTheme = localStorage.getItem('theme') as ThemeMode | null;
-    return savedTheme || 'amoled';
+    return savedTheme || 'light';
   });
 
   // Save to localStorage whenever state changes
@@ -147,13 +147,22 @@ export const ResumeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     localStorage.setItem('resumeData', JSON.stringify(resumeData));
   }, [resumeData]);
 
+  // Apply theme changes to document
   useEffect(() => {
     localStorage.setItem('theme', theme);
-    document.documentElement.classList.remove('light', 'amoled');
+    
+    // Remove all theme classes
+    document.documentElement.classList.remove('light', 'amoled', 'neon');
+    
+    // Add the current theme class (except for light which is default)
     if (theme !== 'light') {
       document.documentElement.classList.add(theme);
     }
   }, [theme]);
+
+  const setTheme = (newTheme: ThemeMode) => {
+    setThemeState(newTheme);
+  };
 
   const updateResumeData = (newData: Partial<ResumeData>) => {
     setResumeData(prevData => ({ ...prevData, ...newData }));
