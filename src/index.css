@@ -241,131 +241,131 @@
   /* Color scheme classes for templates */
   /* Jamie color schemes */
   .jamie-default {
-    --jamie-accent: var(--jamie-accent);
-    --jamie-bg: var(--jamie);
-    --jamie-text: var(--jamie-text);
+    --jamie-accent: hsl(220 54% 20%);
+    --jamie-bg: hsl(220 14% 96%);
+    --jamie-text: hsl(220 14% 20%);
   }
   
   .jamie-green {
-    --jamie-accent: var(--jamie-green-accent);
-    --jamie-bg: var(--jamie-green-bg);
-    --jamie-text: var(--jamie-green-text);
+    --jamie-accent: hsl(140 50% 20%);
+    --jamie-bg: hsl(140 14% 96%);
+    --jamie-text: hsl(140 14% 20%);
   }
   
   .jamie-purple {
-    --jamie-accent: var(--jamie-purple-accent);
-    --jamie-bg: var(--jamie-purple-bg);
-    --jamie-text: var(--jamie-purple-text);
+    --jamie-accent: hsl(270 50% 30%);
+    --jamie-bg: hsl(270 14% 96%);
+    --jamie-text: hsl(270 14% 20%);
   }
   
   .jamie-red {
-    --jamie-accent: var(--jamie-red-accent);
-    --jamie-bg: var(--jamie-red-bg);
-    --jamie-text: var(--jamie-red-text);
+    --jamie-accent: hsl(0 50% 30%);
+    --jamie-bg: hsl(0 14% 96%);
+    --jamie-text: hsl(0 14% 20%);
   }
   
   .jamie-orange {
-    --jamie-accent: var(--jamie-orange-accent);
-    --jamie-bg: var(--jamie-orange-bg);
-    --jamie-text: var(--jamie-orange-text);
+    --jamie-accent: hsl(30 50% 30%);
+    --jamie-bg: hsl(30 14% 96%);
+    --jamie-text: hsl(30 14% 20%);
   }
   
   /* Lauren color schemes */
   .lauren-default {
-    --lauren-accent: var(--lauren-accent);
-    --lauren-bg: var(--lauren);
-    --lauren-text: var(--lauren-text);
+    --lauren-accent: hsl(340 60% 65%);
+    --lauren-bg: hsl(340 40% 95%);
+    --lauren-text: hsl(340 20% 20%);
   }
   
   .lauren-blue {
-    --lauren-accent: var(--lauren-blue-accent);
-    --lauren-bg: var(--lauren-blue-bg);
-    --lauren-text: var(--lauren-blue-text);
+    --lauren-accent: hsl(210 60% 50%);
+    --lauren-bg: hsl(210 40% 95%);
+    --lauren-text: hsl(210 20% 20%);
   }
   
   .lauren-green {
-    --lauren-accent: var(--lauren-green-accent);
-    --lauren-bg: var(--lauren-green-bg);
-    --lauren-text: var(--lauren-green-text);
+    --lauren-accent: hsl(150 60% 40%);
+    --lauren-bg: hsl(150 40% 95%);
+    --lauren-text: hsl(150 20% 20%);
   }
   
   .lauren-purple {
-    --lauren-accent: var(--lauren-purple-accent);
-    --lauren-bg: var(--lauren-purple-bg);
-    --lauren-text: var(--lauren-purple-text);
+    --lauren-accent: hsl(270 60% 55%);
+    --lauren-bg: hsl(270 40% 95%);
+    --lauren-text: hsl(270 20% 20%);
   }
   
   .lauren-amber {
-    --lauren-accent: var(--lauren-amber-accent);
-    --lauren-bg: var(--lauren-amber-bg);
-    --lauren-text: var(--lauren-amber-text);
+    --lauren-accent: hsl(45 90% 45%);
+    --lauren-bg: hsl(45 40% 95%);
+    --lauren-text: hsl(45 20% 25%);
   }
   
   /* Juan color schemes */
   .juan-default {
-    --juan-accent: var(--juan-accent);
-    --juan-bg: var(--juan);
-    --juan-text: var(--juan-text);
-    --juan-header: var(--juan-header);
+    --juan-accent: hsl(200 70% 40%);
+    --juan-bg: hsl(200 14% 96%);
+    --juan-text: hsl(200 14% 20%);
+    --juan-header: hsl(200 20% 10%);
   }
   
   .juan-emerald {
-    --juan-accent: var(--juan-emerald-accent);
-    --juan-bg: var(--juan-emerald-bg);
-    --juan-text: var(--juan-emerald-text);
-    --juan-header: var(--juan-emerald-header);
+    --juan-accent: hsl(150 70% 30%);
+    --juan-bg: hsl(150 14% 96%);
+    --juan-text: hsl(150 14% 20%);
+    --juan-header: hsl(150 20% 10%);
   }
   
   .juan-violet {
-    --juan-accent: var(--juan-violet-accent);
-    --juan-bg: var(--juan-violet-bg);
-    --juan-text: var(--juan-violet-text);
-    --juan-header: var(--juan-violet-header);
+    --juan-accent: hsl(270 70% 40%);
+    --juan-bg: hsl(270 14% 96%);
+    --juan-text: hsl(270 14% 20%);
+    --juan-header: hsl(270 20% 10%);
   }
   
   .juan-rose {
-    --juan-accent: var(--juan-rose-accent);
-    --juan-bg: var(--juan-rose-bg);
-    --juan-text: var(--juan-rose-text);
-    --juan-header: var(--juan-rose-header);
+    --juan-accent: hsl(350 70% 40%);
+    --juan-bg: hsl(350 14% 96%);
+    --juan-text: hsl(350 14% 20%);
+    --juan-header: hsl(350 20% 10%);
   }
   
   .juan-slate {
-    --juan-accent: var(--juan-slate-accent);
-    --juan-bg: var(--juan-slate-bg);
-    --juan-text: var(--juan-slate-text);
-    --juan-header: var(--juan-slate-header);
+    --juan-accent: hsl(210 30% 40%);
+    --juan-bg: hsl(210 14% 96%);
+    --juan-text: hsl(210 14% 20%);
+    --juan-header: hsl(210 20% 10%);
   }
   
   /* Richard color schemes */
   .richard-default {
-    --richard: var(--richard);
-    --richard-accent: var(--richard-accent);
-    --richard-text: var(--richard-text);
+    --richard: hsl(230 40% 25%);
+    --richard-accent: hsl(230 40% 40%);
+    --richard-text: hsl(0 0% 100%);
   }
   
   .richard-charcoal {
-    --richard: var(--richard-charcoal);
-    --richard-accent: var(--richard-charcoal-accent);
-    --richard-text: var(--richard-charcoal-text);
+    --richard: hsl(220 14% 20%);
+    --richard-accent: hsl(220 14% 30%);
+    --richard-text: hsl(0 0% 100%);
   }
   
   .richard-maroon {
-    --richard: var(--richard-maroon);
-    --richard-accent: var(--richard-maroon-accent);
-    --richard-text: var(--richard-maroon-text);
+    --richard: hsl(0 50% 25%);
+    --richard-accent: hsl(0 50% 35%);
+    --richard-text: hsl(0 0% 100%);
   }
   
   .richard-forest {
-    --richard: var(--richard-forest);
-    --richard-accent: var(--richard-forest-accent);
-    --richard-text: var(--richard-forest-text);
+    --richard: hsl(150 40% 20%);
+    --richard-accent: hsl(150 40% 30%);
+    --richard-text: hsl(0 0% 100%);
   }
   
   .richard-indigo {
-    --richard: var(--richard-indigo);
-    --richard-accent: var(--richard-indigo-accent);
-    --richard-text: var(--richard-indigo-text);
+    --richard: hsl(270 40% 30%);
+    --richard-accent: hsl(270 40% 40%);
+    --richard-text: hsl(0 0% 100%);
   }
 
   /* Print styles */
