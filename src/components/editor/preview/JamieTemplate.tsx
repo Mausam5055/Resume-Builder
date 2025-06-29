@@ -25,24 +25,6 @@ const JamieTemplate = () => {
   // Get enabled sections
   const enabledSections = sections.filter(section => section.enabled).sort((a, b) => a.order - b.order);
 
-  // Calculate dynamic height based on content
-  const calculateHeight = () => {
-    let baseHeight = 400; // Base height for header and personal info
-    
-    if (summary?.text) baseHeight += 80;
-    baseHeight += experience.length * 120;
-    baseHeight += education.length * 80;
-    baseHeight += projects.length * 100;
-    baseHeight += certificates.length * 60;
-    baseHeight += Math.ceil(skills.flatMap(group => group.skills).length / 3) * 40;
-    baseHeight += Math.ceil(languages.length / 2) * 30;
-    baseHeight += references.length * 80;
-    
-    return Math.max(baseHeight, 800); // Minimum height
-  };
-
-  const dynamicHeight = calculateHeight();
-
   return (
     <div className={`w-full ${isMobile ? 'overflow-x-auto' : ''} print:overflow-x-auto print:w-full`}>
       <motion.div 
@@ -52,23 +34,23 @@ const JamieTemplate = () => {
         transition={{ duration: 0.5 }}
         style={{
           width: isMobile ? '100%' : '210mm',
-          minHeight: isMobile ? 'auto' : `${dynamicHeight}px`,
-          maxHeight: 'none'
+          minHeight: 'auto',
+          height: 'auto'
         }}
       >
-        <div className="flex print:w-full print:h-full min-h-full">
+        <div className="flex print:w-full min-h-[297mm]">
           {/* Left Sidebar */}
           <div className="w-[75mm] bg-slate-50 min-h-full p-6 print:p-6 print:w-[75mm] print:flex-shrink-0 flex flex-col">
             {/* Profile Photo */}
             {personal?.avatarUrl && (
               <div className="mb-8 flex justify-center">
-                <Avatar className="w-32 h-32 border-4 border-white shadow-lg">
+                <Avatar className="w-44 h-44 border-4 border-white shadow-lg">
                   <AvatarImage 
                     src={personal.avatarUrl} 
                     alt={personal?.fullName || ''} 
                     className="object-cover"
                   />
-                  <AvatarFallback className="text-2xl bg-slate-200 text-slate-600">
+                  <AvatarFallback className="text-4xl bg-slate-200 text-slate-600">
                     {personal?.fullName ? personal.fullName.charAt(0) : '?'}
                   </AvatarFallback>
                 </Avatar>

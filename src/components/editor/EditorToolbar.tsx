@@ -33,7 +33,6 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
 
   const handleSave = () => {
     try {
-      // Save to localStorage
       localStorage.setItem('resumeData', JSON.stringify(resumeData));
       toast.success('Resume saved successfully');
     } catch (error) {
@@ -50,38 +49,42 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
         return;
       }
 
-      // Show loading toast
       const loadingToast = toast.loading('Generating PDF...');
 
-      // Calculate dynamic page size based on content
+      // Get the actual content dimensions
+      const elementRect = element.getBoundingClientRect();
       const elementHeight = element.scrollHeight;
       const elementWidth = element.scrollWidth;
       
       // A4 dimensions in mm
-      const a4Width = 210;
-      const a4Height = 297;
+      const a4WidthMm = 210;
+      const a4HeightMm = 297;
       
-      // Calculate required height based on content
-      const aspectRatio = elementWidth / elementHeight;
-      let pdfWidth = a4Width;
-      let pdfHeight = Math.max(a4Height, pdfWidth / aspectRatio);
+      // Calculate scale to fit content to A4 width
+      const scale = a4WidthMm / (elementWidth * 0.264583); // Convert px to mm
+      const scaledHeight = (elementHeight * scale * 0.264583);
+      
+      // Use A4 height or content height, whichever is larger
+      const finalHeight = Math.max(a4HeightMm, scaledHeight);
 
       const opt = {
-        margin: [5, 5, 5, 5],
+        margin: [0, 0, 0, 0],
         filename: `${resumeData.personal.fullName.replace(/\s+/g, '_')}_Resume.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
-          scale: 2, 
+          scale: 2,
           useCORS: true, 
           logging: false,
           allowTaint: true,
           backgroundColor: '#ffffff',
           width: elementWidth,
-          height: elementHeight
+          height: elementHeight,
+          scrollX: 0,
+          scrollY: 0
         },
         jsPDF: { 
           unit: 'mm', 
-          format: [pdfWidth, pdfHeight], 
+          format: [a4WidthMm, finalHeight], 
           orientation: 'portrait',
           compress: true
         }
@@ -89,7 +92,6 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
 
       await html2pdf().set(opt).from(element).save();
       
-      // Dismiss loading toast and show success
       toast.dismiss(loadingToast);
       toast.success('Resume exported as PDF successfully');
     } catch (error) {
@@ -106,17 +108,14 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
         return;
       }
 
-      // Create a new window for printing
       const printWindow = window.open('', '_blank');
       if (!printWindow) {
         toast.error('Please allow popups to print');
         return;
       }
 
-      // Get the HTML content
       const htmlContent = element.outerHTML;
       
-      // Create print-friendly HTML
       printWindow.document.write(`
         <!DOCTYPE html>
         <html>
@@ -125,12 +124,18 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
             <style>
               * { margin: 0; padding: 0; box-sizing: border-box; }
               body { font-family: Arial, sans-serif; }
+              @page { 
+                size: A4; 
+                margin: 0; 
+              }
               @media print {
                 body { margin: 0; }
                 .resume-preview-container > div {
-                  width: 100% !important;
+                  width: 210mm !important;
+                  min-height: 297mm !important;
                   height: auto !important;
                   box-shadow: none !important;
+                  page-break-inside: avoid;
                 }
               }
             </style>
@@ -144,7 +149,6 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
       printWindow.document.close();
       printWindow.focus();
       
-      // Wait for content to load then print
       setTimeout(() => {
         printWindow.print();
         printWindow.close();
@@ -167,7 +171,6 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
         });
         toast.success('Shared successfully');
       } else {
-        // Fallback: copy to clipboard
         await navigator.clipboard.writeText(window.location.href);
         toast.success('Link copied to clipboard');
       }
