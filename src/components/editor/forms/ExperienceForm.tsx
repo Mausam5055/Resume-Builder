@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { useResume } from '@/context/ResumeContext';
 import { Experience } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,12 +7,15 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import { Trash2, Plus, GripVertical, Wand2 } from 'lucide-react';
+import { Trash2, Plus, GripVertical, Wand2, Sparkles } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import AIAssistant from './AIAssistant';
 
 const ExperienceForm = () => {
   const { resumeData, updateSection } = useResume();
   const { experience } = resumeData;
+  const [showAI, setShowAI] = useState<{ [key: string]: boolean }>({});
 
   const handleInputChange = (index: number, field: keyof Experience, value: string | boolean) => {
     const updatedExperience = [...experience];
@@ -85,6 +87,22 @@ const ExperienceForm = () => {
     const updatedExperience = [...experience];
     updatedExperience.splice(index, 1);
     updateSection('experience', updatedExperience);
+  };
+
+  const handleAISuggestion = (experienceIndex: number, suggestion: string) => {
+    const updatedExperience = [...experience];
+    updatedExperience[experienceIndex] = {
+      ...updatedExperience[experienceIndex],
+      description: suggestion
+    };
+    updateSection('experience', updatedExperience);
+  };
+
+  const toggleAI = (experienceId: string) => {
+    setShowAI(prev => ({
+      ...prev,
+      [experienceId]: !prev[experienceId]
+    }));
   };
 
   return (
@@ -173,9 +191,14 @@ const ExperienceForm = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <Label htmlFor={`description-${exp.id}`}>Role Description</Label>
-                    <Button variant="ghost" size="sm" className="h-7 gap-1">
-                      <Wand2 className="h-3 w-3" />
-                      <span className="text-xs">Improve</span>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="h-7 gap-1"
+                      onClick={() => toggleAI(exp.id)}
+                    >
+                      <Sparkles className="h-3 w-3 text-amber-500" />
+                      <span className="text-xs">AI Help</span>
                     </Button>
                   </div>
                   <Textarea 
@@ -186,6 +209,16 @@ const ExperienceForm = () => {
                     className="resize-y"
                     rows={2}
                   />
+                  
+                  <Collapsible open={showAI[exp.id]} onOpenChange={() => toggleAI(exp.id)}>
+                    <CollapsibleContent>
+                      <AIAssistant
+                        section="experience"
+                        currentContent={exp.description}
+                        onSuggestionApply={(suggestion) => handleAISuggestion(expIndex, suggestion)}
+                      />
+                    </CollapsibleContent>
+                  </Collapsible>
                 </div>
                 
                 <div className="space-y-3">

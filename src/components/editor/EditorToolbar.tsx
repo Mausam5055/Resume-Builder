@@ -11,7 +11,9 @@ import {
   Sun,
   Moon,
   Menu,
-  X
+  X,
+  Printer,
+  Share2
 } from 'lucide-react';
 import { useResume } from '@/context/ResumeContext';
 import { ThemeMode } from '@/types';
@@ -31,51 +33,147 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
 
   const handleSave = () => {
     try {
-      // Generate A4 PDF
-      const element = document.querySelector('.resume-preview-container > div');
-      if (!element) {
-        toast.error('Could not find resume to save');
-        return;
-      }
-
-      const opt = {
-        margin: 0,
-        filename: `${resumeData.personal.fullName.replace(/\s+/g, '_')}_Resume.pdf`,
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 2, useCORS: true, logging: false },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
-
-      html2pdf().set(opt).from(element).save();
-      toast.success('Resume saved as PDF');
+      // Save to localStorage
+      localStorage.setItem('resumeData', JSON.stringify(resumeData));
+      toast.success('Resume saved successfully');
     } catch (error) {
-      console.error('Failed to save PDF:', error);
-      toast.error('Failed to save PDF');
+      console.error('Failed to save resume:', error);
+      toast.error('Failed to save resume');
     }
   };
 
-  const handleExport = () => {
+  const handleExport = async () => {
     try {
-      // Export resume to PDF with higher quality
       const element = document.querySelector('.resume-preview-container > div');
       if (!element) {
         toast.error('Could not find resume to export');
         return;
       }
 
+      // Show loading toast
+      const loadingToast = toast.loading('Generating PDF...');
+
+      // Calculate dynamic page size based on content
+      const elementHeight = element.scrollHeight;
+      const elementWidth = element.scrollWidth;
+      
+      // A4 dimensions in mm
+      const a4Width = 210;
+      const a4Height = 297;
+      
+      // Calculate required height based on content
+      const aspectRatio = elementWidth / elementHeight;
+      let pdfWidth = a4Width;
+      let pdfHeight = Math.max(a4Height, pdfWidth / aspectRatio);
+
       const opt = {
-        margin: 0,
+        margin: [5, 5, 5, 5],
         filename: `${resumeData.personal.fullName.replace(/\s+/g, '_')}_Resume.pdf`,
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 4, useCORS: true, logging: false },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+          scale: 2, 
+          useCORS: true, 
+          logging: false,
+          allowTaint: true,
+          backgroundColor: '#ffffff',
+          width: elementWidth,
+          height: elementHeight
+        },
+        jsPDF: { 
+          unit: 'mm', 
+          format: [pdfWidth, pdfHeight], 
+          orientation: 'portrait',
+          compress: true
+        }
       };
 
-      html2pdf().set(opt).from(element).save();
-      toast.success('Resume exported as PDF');
+      await html2pdf().set(opt).from(element).save();
+      
+      // Dismiss loading toast and show success
+      toast.dismiss(loadingToast);
+      toast.success('Resume exported as PDF successfully');
     } catch (error) {
       console.error('Failed to export PDF:', error);
-      toast.error('Failed to export PDF');
+      toast.error('Failed to export PDF. Please try again.');
+    }
+  };
+
+  const handlePrint = () => {
+    try {
+      const element = document.querySelector('.resume-preview-container > div');
+      if (!element) {
+        toast.error('Could not find resume to print');
+        return;
+      }
+
+      // Create a new window for printing
+      const printWindow = window.open('', '_blank');
+      if (!printWindow) {
+        toast.error('Please allow popups to print');
+        return;
+      }
+
+      // Get the HTML content
+      const htmlContent = element.outerHTML;
+      
+      // Create print-friendly HTML
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Resume - ${resumeData.personal.fullName}</title>
+            <style>
+              * { margin: 0; padding: 0; box-sizing: border-box; }
+              body { font-family: Arial, sans-serif; }
+              @media print {
+                body { margin: 0; }
+                .resume-preview-container > div {
+                  width: 100% !important;
+                  height: auto !important;
+                  box-shadow: none !important;
+                }
+              }
+            </style>
+          </head>
+          <body>
+            ${htmlContent}
+          </body>
+        </html>
+      `);
+      
+      printWindow.document.close();
+      printWindow.focus();
+      
+      // Wait for content to load then print
+      setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+      }, 500);
+      
+      toast.success('Print dialog opened');
+    } catch (error) {
+      console.error('Failed to print:', error);
+      toast.error('Failed to open print dialog');
+    }
+  };
+
+  const handleShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: `${resumeData.personal.fullName} - Resume`,
+          text: `Check out ${resumeData.personal.fullName}'s resume`,
+          url: window.location.href,
+        });
+        toast.success('Shared successfully');
+      } else {
+        // Fallback: copy to clipboard
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success('Link copied to clipboard');
+      }
+    } catch (error) {
+      console.error('Failed to share:', error);
+      toast.error('Failed to share');
     }
   };
 
@@ -95,7 +193,7 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
   };
 
   return (
-    <div className="h-14 border-b border-border flex items-center justify-between px-2 sm:px-4 bg-background">
+    <div className="h-14 border-b border-border flex items-center justify-between px-2 sm:px-4 bg-background/95 backdrop-blur-sm">
       <div className="flex items-center gap-2">
         {isMobile ? (
           <Button
@@ -145,6 +243,26 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
           aria-label="Reset"
         >
           <RefreshCw className="h-4 w-4" />
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={handleShare}
+          className="h-8 w-8"
+          aria-label="Share"
+        >
+          <Share2 className="h-4 w-4" />
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={handlePrint}
+          className="h-8 w-8"
+          aria-label="Print"
+        >
+          <Printer className="h-4 w-4" />
         </Button>
 
         <Button
