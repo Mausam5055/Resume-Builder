@@ -221,9 +221,6 @@
   
   /* Additional styles for the resume builder */
   .resume-page {
-    width: 210mm;
-    height: 297mm;
-    overflow: hidden;
     background: white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
@@ -369,5 +366,35 @@
     --richard: var(--richard-indigo);
     --richard-accent: var(--richard-indigo-accent);
     --richard-text: var(--richard-indigo-text);
+  }
+
+  /* Print styles */
+  @media print {
+    body {
+      -webkit-print-color-adjust: exact;
+      color-adjust: exact;
+    }
+    
+    .resume-preview-container > div {
+      width: 100% !important;
+      height: auto !important;
+      box-shadow: none !important;
+      page-break-inside: avoid;
+    }
+    
+    /* Ensure text is visible in print */
+    * {
+      color: #000 !important;
+      background: transparent !important;
+    }
+    
+    .bg-slate-800, .bg-[hsl(var(--juan-header))], .bg-[hsl(var(--richard))] {
+      background: #2d3748 !important;
+      color: white !important;
+    }
+    
+    .text-white {
+      color: white !important;
+    }
   }
 }

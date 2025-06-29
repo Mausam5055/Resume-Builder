@@ -56,19 +56,28 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
       const elementHeight = element.scrollHeight;
       const elementWidth = element.scrollWidth;
       
-      // A4 dimensions in mm
-      const a4WidthMm = 210;
-      const a4HeightMm = 297;
+      // Calculate optimal PDF dimensions based on content
+      const contentAspectRatio = elementWidth / elementHeight;
+      const a4AspectRatio = 210 / 297; // A4 aspect ratio
       
-      // Calculate scale to fit content to A4 width
-      const scale = a4WidthMm / (elementWidth * 0.264583); // Convert px to mm
-      const scaledHeight = (elementHeight * scale * 0.264583);
+      let pdfWidth = 210; // A4 width in mm
+      let pdfHeight = 297; // A4 height in mm
       
-      // Use A4 height or content height, whichever is larger
-      const finalHeight = Math.max(a4HeightMm, scaledHeight);
+      // Adjust dimensions based on content
+      if (contentAspectRatio > a4AspectRatio) {
+        // Content is wider, adjust height
+        pdfHeight = pdfWidth / contentAspectRatio;
+      } else {
+        // Content is taller, adjust width
+        pdfWidth = pdfHeight * contentAspectRatio;
+      }
+      
+      // Ensure minimum A4 size
+      pdfWidth = Math.max(pdfWidth, 210);
+      pdfHeight = Math.max(pdfHeight, 297);
 
       const opt = {
-        margin: [0, 0, 0, 0],
+        margin: [5, 5, 5, 5], // Small margins
         filename: `${resumeData.personal.fullName.replace(/\s+/g, '_')}_Resume.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
@@ -80,12 +89,14 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
           width: elementWidth,
           height: elementHeight,
           scrollX: 0,
-          scrollY: 0
+          scrollY: 0,
+          windowWidth: elementWidth,
+          windowHeight: elementHeight
         },
         jsPDF: { 
           unit: 'mm', 
-          format: [a4WidthMm, finalHeight], 
-          orientation: 'portrait',
+          format: [pdfWidth, pdfHeight], 
+          orientation: pdfHeight > pdfWidth ? 'portrait' : 'landscape',
           compress: true
         }
       };
@@ -126,13 +137,12 @@ const EditorToolbar = ({ isSidebarOpen, onSidebarToggle }: EditorToolbarProps) =
               body { font-family: Arial, sans-serif; }
               @page { 
                 size: A4; 
-                margin: 0; 
+                margin: 10mm; 
               }
               @media print {
                 body { margin: 0; }
                 .resume-preview-container > div {
-                  width: 210mm !important;
-                  min-height: 297mm !important;
+                  width: 100% !important;
                   height: auto !important;
                   box-shadow: none !important;
                   page-break-inside: avoid;
