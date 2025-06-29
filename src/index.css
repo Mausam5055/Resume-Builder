@@ -388,7 +388,17 @@
       background: transparent !important;
     }
     
-    .bg-slate-800, .bg-[hsl(var(--juan-header))], .bg-[hsl(var(--richard))] {
+    .bg-slate-800 {
+      background: #2d3748 !important;
+      color: white !important;
+    }
+    
+    .juan-header {
+      background: #2d3748 !important;
+      color: white !important;
+    }
+    
+    .richard-header {
       background: #2d3748 !important;
       color: white !important;
     }
